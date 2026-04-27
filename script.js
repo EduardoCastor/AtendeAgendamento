@@ -4,7 +4,7 @@ const select = document.getElementById('protocoloSelect');
 const statusSelect = document.getElementById('statusSelect');
 
 // 🔹 Webhook para BUSCAR dados
-const WEBHOOK_LISTA = 'https://n8n.srv1352561.hstgr.cloud-test/webhook/carregaprotocolo';
+const WEBHOOK_LISTA = 'https://n8n.srv1352561.hstgr.cloud/webhook/carregaprotocolo';
 
 // 🔹 Webhook para ATUALIZAR status
 const WEBHOOK_UPDATE = 'https://n8n.srv1352561.hstgr.cloud/webhook/atualizaatendimento';
