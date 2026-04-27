@@ -19,7 +19,6 @@ async function carregarLista() {
 
     select.innerHTML = '<option value="">Selecione um atendimento</option>';
 
-    // 🔹 Agora acessa data.slots
     (data.slots || []).forEach(item => {
       const option = document.createElement('option');
       option.value = item.value;
@@ -28,8 +27,7 @@ async function carregarLista() {
     });
 
   } catch (error) {
-    //select.innerHTML = '<option>35381920260422</option>';
-    select.innerHTML = '<option>Erro ao carregar</option>';  
+    select.innerHTML = '<option>Erro ao carregar</option>';
   }
 }
 
@@ -62,7 +60,7 @@ form.addEventListener('submit', async (e) => {
     statusBox.innerHTML = '✅ Status atualizado com sucesso';
 
     form.reset();
-    carregarLista(); // 🔥 Atualiza lista após alteração
+    carregarLista();
 
   } catch (error) {
     statusBox.style.display = 'block';
