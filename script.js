@@ -19,10 +19,11 @@ async function carregarLista() {
 
     select.innerHTML = '<option value="">Selecione um atendimento</option>';
 
-    data.forEach(item => {
+    // 🔹 Agora acessa data.slots
+    (data.slots || []).forEach(item => {
       const option = document.createElement('option');
-      option.value = item.protocolo;
-      option.textContent = `${item.nome} - Prot: ${item.protocolo}`;
+      option.value = item.value;
+      option.textContent = item.label;
       select.appendChild(option);
     });
 
