@@ -7,7 +7,7 @@ const statusSelect = document.getElementById('statusSelect');
 const WEBHOOK_LISTA = 'https://n8n.srv1352561.hstgr.cloud-test/webhook/carregaprotocolo';
 
 // 🔹 Webhook para ATUALIZAR status
-const WEBHOOK_UPDATE = 'https://n8n.srv1352561.hstgr.cloud/webhook-test/atualizaatendimento';
+const WEBHOOK_UPDATE = 'https://n8n.srv1352561.hstgr.cloud/webhook/atualizaatendimento';
 
 // ==========================
 // 🔹 CARREGAR DROPDOWN
