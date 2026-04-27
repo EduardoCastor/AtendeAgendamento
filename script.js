@@ -1,4 +1,4 @@
-const form = document.getElementById('formCancelamento');
+const form = document.getElementById('formAtendeAgendamento');
 const statusBox = document.getElementById('status');
 const select = document.getElementById('protocoloSelect');
 const statusSelect = document.getElementById('statusSelect');
