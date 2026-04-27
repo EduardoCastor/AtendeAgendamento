@@ -27,7 +27,7 @@ async function carregarLista() {
     });
 
   } catch (error) {
-    select.innerHTML = '<option>Erro ao carregar</option>';
+    select.innerHTML = '<option>Não há atendimentos pendentes</option>';
   }
 }
 
