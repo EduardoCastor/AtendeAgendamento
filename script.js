@@ -28,8 +28,8 @@ async function carregarLista() {
     });
 
   } catch (error) {
-    select.innerHTML = '<option>35381920260422</option>';'
-    //select.innerHTML = '<option>Erro ao carregar</option>';'  
+    //select.innerHTML = '<option>35381920260422</option>';'
+    select.innerHTML = '<option>Erro ao carregar</option>';'  
   }
 }
 
