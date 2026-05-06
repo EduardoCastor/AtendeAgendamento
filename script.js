@@ -59,13 +59,16 @@ select.addEventListener('change', () => {
   const protocoloSelecionado = select.value;
 
   const atendimento = listaAtendimentos.find(
-    item => item.value === protocoloSelecionado
+    item => String(item.value) === String(protocoloSelecionado)
   );
- 
+
+  console.log('Selecionado:', protocoloSelecionado);
+  console.log('Encontrado:', atendimento);
+
   if (atendimento) {
-   inputResposta.value = atendimento.resposta || '';
+    inputResposta.value = atendimento.resposta || '';
   } else {
-  inputResposta.value = '';
+    inputResposta.value = '';
   }
 });
 
