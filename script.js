@@ -2,6 +2,7 @@ const form = document.getElementById('formAtendeAgendamento');
 const statusBox = document.getElementById('status');
 const select = document.getElementById('protocoloSelect');
 const statusSelect = document.getElementById('statusSelect');
+const inputResposta = document.getElementById('resposta');
 
 // 🔹 Webhook para BUSCAR dados
 const WEBHOOK_LISTA = 'https://n8n.srv1352561.hstgr.cloud/webhook/carregaprotocolo';
@@ -32,6 +33,24 @@ async function carregarLista() {
 }
 
 carregarLista();
+
+// ==========================
+// 🔹 CARREGA RESPOSTA
+// ==========================
+
+  select.addEventListener('change', () => {
+    const protocoloSelecionado = select.value;
+  
+    const atendimento = listaAtendimentos.find(
+      item => item.value === protocoloSelecionado
+    );
+  
+    if (atendimento) {
+      inputResposta.value = atendimento.resposta || '';
+    } else {
+      inputResposta.value = '';
+    }
+  });
 
 // ==========================
 // 🔹 SUBMIT
