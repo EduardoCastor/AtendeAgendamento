@@ -38,6 +38,7 @@ async function carregarLista() {
       const option = document.createElement('option');
       option.value = item.value;
       option.textContent = item.label;
+      option.resposta = item.resposta;
       select.appendChild(option);
     });
 
@@ -60,11 +61,11 @@ select.addEventListener('change', () => {
   const atendimento = listaAtendimentos.find(
     item => item.value === protocoloSelecionado
   );
-  inputResposta.value = 'atendimento.resposta';
-  //if (atendimento) {
-  // inputResposta.value = atendimento.resposta || '';
-  //} else {
- // inputResposta.value = '';
+ 
+  if (atendimento) {
+   inputResposta.value = atendimento.resposta || '';
+  } else {
+  inputResposta.value = '';
   }
 });
 
