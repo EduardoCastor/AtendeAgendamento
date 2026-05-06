@@ -48,7 +48,7 @@ carregarLista();
     if (atendimento) {
       inputResposta.value = atendimento.resposta || '';
     } else {
-      inputResposta.value = '';
+      inputResposta.value = 'TESTE';
     }
   });
 
