@@ -60,11 +60,11 @@ select.addEventListener('change', () => {
   const atendimento = listaAtendimentos.find(
     item => item.value === protocoloSelecionado
   );
-  //inputResposta.value = atendimento.resposta
-  if (atendimento) {
-    inputResposta.value = atendimento.resposta || '';
-  } else {
-  inputResposta.value = '';
+  inputResposta.value = atendimento.resposta;
+  //if (atendimento) {
+  // inputResposta.value = atendimento.resposta || '';
+  //} else {
+ // inputResposta.value = '';
   }
 });
 
