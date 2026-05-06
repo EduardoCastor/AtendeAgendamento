@@ -7,62 +7,51 @@ const select = document.getElementById('protocoloSelect');
 const statusSelect = document.getElementById('statusSelect');
 const inputResposta = document.getElementById('resposta');
 
-// 🔹 CACHE DOS ATENDIMENTOS
+// 🔹 CACHE
 let listaAtendimentos = [];
 
-// 🔹 Webhook para BUSCAR dados
+// 🔹 WEBHOOKS
 const WEBHOOK_LISTA = 'https://n8n.srv1352561.hstgr.cloud/webhook/carregaprotocolo';
-
-// 🔹 Webhook para ATUALIZAR status
 const WEBHOOK_UPDATE = 'https://n8n.srv1352561.hstgr.cloud/webhook/atualizaatendimento';
 
 // ==========================
-// 🔹 CARREGAR DROPDOWN
+// 🔹 CARREGAR LISTA
 // ==========================
 async function carregarLista() {
   try {
     const response = await fetch(WEBHOOK_LISTA);
-
-    if (!response.ok) throw new Error('Erro ao buscar dados');
-
     const data = await response.json();
 
-    // 🔹 GUARDA OS DADOS COMPLETOS
     listaAtendimentos = data.slots || [];
 
-    // 🔹 LIMPA SELECT
+    console.log('LISTA CARREGADA:', listaAtendimentos);
+
     select.innerHTML = '<option value="">Selecione um atendimento</option>';
 
-    // 🔹 PREENCHE SELECT
     listaAtendimentos.forEach(item => {
       const option = document.createElement('option');
-      option.value = item.value;
+      option.value = String(item.value); // 🔴 força string
       option.textContent = item.label;
-      option.resposta = item.resposta;
       select.appendChild(option);
     });
 
-    // 🔹 LIMPA RESPOSTA AO RECARREGAR
-    inputResposta.value = '';
-
   } catch (error) {
     console.error(error);
-    select.innerHTML = '<option>Não há atendimentos pendentes</option>';
-    inputResposta.value = '';
   }
 }
 
 // ==========================
-// 🔹 ATUALIZA RESPOSTA AO TROCAR PROTOCOLO
+// 🔹 EVENTO CHANGE
 // ==========================
 select.addEventListener('change', () => {
-  const protocoloSelecionado = select.value;
-
-  const atendimento = listaAtendimentos.find(
-    item => String(item.value) === String(protocoloSelecionado)
-  );
+  const protocoloSelecionado = String(select.value);
 
   console.log('Selecionado:', protocoloSelecionado);
+
+  const atendimento = listaAtendimentos.find(
+    item => String(item.value) === protocoloSelecionado
+  );
+
   console.log('Encontrado:', atendimento);
 
   if (atendimento) {
@@ -87,26 +76,21 @@ form.addEventListener('submit', async (e) => {
   }
 
   try {
-    const response = await fetch(WEBHOOK_UPDATE, {
+    await fetch(WEBHOOK_UPDATE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ protocolo, status })
     });
 
-    if (!response.ok) throw new Error('Erro ao atualizar');
-
     statusBox.style.display = 'block';
     statusBox.innerHTML = '✅ Status atualizado com sucesso';
 
-    // 🔹 RESET
     form.reset();
     inputResposta.value = '';
 
-    // 🔹 RECARREGA LISTA
-    carregarLista();
+    await carregarLista();
 
   } catch (error) {
-    console.error(error);
     statusBox.style.display = 'block';
     statusBox.innerHTML = '❌ Erro ao atualizar';
   }
