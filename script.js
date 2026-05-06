@@ -60,7 +60,7 @@ select.addEventListener('change', () => {
   const atendimento = listaAtendimentos.find(
     item => item.value === protocoloSelecionado
   );
-  inputResposta.value = atendimento.resposta;
+  inputResposta.value = 'atendimento.resposta';
   //if (atendimento) {
   // inputResposta.value = atendimento.resposta || '';
   //} else {
